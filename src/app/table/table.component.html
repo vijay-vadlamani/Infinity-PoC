@@ -1,0 +1,27 @@
+<div class="row tData">
+  <div class="small-11 small-centered medium-11 medium-centered large-11 large-centered columns" (OnScrollMethod) = "nextPage()" [scrollTrigger]="10" InfiniteScroll style="height: 700px !important;overflow: scroll">
+  <input type="text" #searchFilter (keyup)="0" />
+    <table >
+      <thead data-sticky-container>
+        <tr>
+          <th>Amount Due</th>
+          <th>Amount Paid</th>
+          <th>Amount Pending</th>
+          <th>Email</th>
+          <th>Physician</th>
+          <th>First Name</th>
+          <th>PNR Id</th>
+          <th>Last Name</th>
+          <th>Unique Id</th>
+          <th>User Name</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let user of data | searchPipe: searchFilter.value">
+          <td *ngFor="let val of user | rowPipe">{{val}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

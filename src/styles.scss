@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/foundation-sites/assets/foundation";
+
+// app component styles
+@import './app/app.component';
+nav {
+    background: #1976D2;
+    height: 4em;
+    min-height: 56px;
+    padding: 0;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.24);
+    position: fixed;
+    width: 100%;
+}
+
+.main-nav {
+  font-family: "Roboto";
+  color: #fff;
+  text-align: center;
+}
+
+h4 {
+  padding-top: 1rem;
+}
+
+footer {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+footer p {
+  color: #999;
+}
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
