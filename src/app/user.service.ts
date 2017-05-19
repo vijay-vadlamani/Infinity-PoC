@@ -46,6 +46,6 @@ export class UserService {
     };
 
   updateUser() {
-    this.fb.database.ref().update(updates);
+    // this.fb.database.ref().update(updates);
   }
 }
