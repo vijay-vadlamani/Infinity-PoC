@@ -43,12 +43,16 @@ export class searchPipe implements PipeTransform {
 
     filter = filter.toUpperCase();
 
-    if (filter && filter !== null && Array.isArray(values)) {
+    if (filter && Array.isArray(values)) {
       const keys = Object.keys(values[0]);
-      return values.filter(v => v && keys.some(k => {
-          return v[k].toString().toUpperCase().indexOf(filter) >= 0
-        }));
+      return values.filter(v => {
+        return v && keys.some(k => {
+          if (v[k] != null) {
+            return v[k].toString().toUpperCase().indexOf(filter) >= 0;
+          }
+        });
+      }
+      );
     }
   }
-
 }
