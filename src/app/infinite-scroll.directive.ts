@@ -19,9 +19,12 @@ export class InfiniteScrollDirective {
 
   public _element: any;
   public _count: number;
+
   @Input()
   scrollTrigger: number;
-  @Output() OnScrollMethod = new EventEmitter<any>();
+
+  @Output()
+  OnScrollMethod = new EventEmitter<any>();
 
   constructor(public element:ElementRef) {
     this._element = this.element.nativeElement;

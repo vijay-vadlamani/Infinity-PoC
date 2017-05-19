@@ -14,6 +14,8 @@ import { UserService } from './user.service';
 import { TableSearchComponent } from './table-search/table-search.component';
 import { columnPipe, rowPipe, searchPipe } from './search-pipe.pipe';
 import { InfiniteScrollDirective } from './infinite-scroll.directive';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDBvJbc-3Fm6-tBKZv9MOjdy8ZANrIuZRo",
@@ -32,7 +34,8 @@ export const firebaseConfig = {
     columnPipe,
     rowPipe,
     searchPipe,
-    InfiniteScrollDirective
+    InfiniteScrollDirective,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     UserService,

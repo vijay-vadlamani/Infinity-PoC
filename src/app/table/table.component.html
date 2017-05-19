@@ -1,27 +1,54 @@
+
 <div class="row tData">
-  <div class="small-11 small-centered medium-11 medium-centered large-11 large-centered columns" (OnScrollMethod) = "nextPage()" [scrollTrigger]="10" InfiniteScroll style="height: 700px !important;overflow: scroll">
-  <input type="text" #searchFilter (keyup)="0" />
-    <table >
-      <thead data-sticky-container>
+  <div class="small-centered medium-centered large-centered columns" (OnScrollMethod) = "nextPage()" [scrollTrigger]="10" InfiniteScroll style="height: 700px !important;overflow: scroll" >
+  <input type="text" #searchFilter (keyup)="0" placeholder="Filter"/>
+    <table class="table table-responsive table-hover table-bordered">
+      <thead>
         <tr>
-          <th>Amount Due</th>
-          <th>Amount Paid</th>
-          <th>Amount Pending</th>
-          <th>Email</th>
-          <th>Physician</th>
-          <th>First Name</th>
-          <th>PNR Id</th>
-          <th>Last Name</th>
-          <th>Unique Id</th>
-          <th>User Name</th>
+          <th>First Name <span class="visible-xs-down visible-sm-down hidden-lg-up">,</span><div class="visible-xs-down visible-sm-down hidden-lg-up">Last Name</div></th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">Last Name</th>
+          <th>Physician <span class="visible-xs-down visible-sm-down hidden-lg-up">,</span><div class="visible-xs-down visible-sm-down hidden-lg-up">PNR Id</div></th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">PNR Id</th>
+          <th>Email <span class="visible-xs-down visible-sm-down hidden-lg-up">,</span><div class="visible-xs-down visible-sm-down hidden-lg-up">Unique Id</div></th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">Unique Id</th>
+          <th>User Name <span class="visible-xs-down visible-sm-down hidden-lg-up">,</span><div class="visible-xs-down visible-sm-down hidden-lg-up">Amount Pending</div></th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">Amount Due</th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">Amount Paid</th>
+          <th class="hidden-xs-down hidden-sm-down hidden-md-down">Amount Pending</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr *ngFor="let user of data | searchPipe: searchFilter.value">
-          <td *ngFor="let val of user | rowPipe">{{val}}</td>
-        </tr>
+        <tr *ngFor="let user of data | searchPipe: searchFilter.value | rowPipe" [class.selected]="user === selectedVal" (click)="open(user, content)">
+          <td>{{user.name}} <div class="visible-xs-down visible-sm-down hidden-lg-up mobileSmall">{{user.surname}}</div></td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.surname}}</td>
+          <td>{{user.fullname}} <div class="visible-xs-down visible-sm-down hidden-lg-up mobileSmall">{{user.pnr_id}}</div></td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.pnr_id}}</td>
+          <td>{{user.email}} <div class="visible-xs-down visible-sm-down hidden-lg-up mobileSmall">{{user.uniqueId}}</div></td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.uniqueId}}</td>
+          <td>{{user.user_name}} <div class="visible-xs-down visible-sm-down hidden-lg-up mobileSmall">{{user.amount_pending}}</div></td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.amount_due}}</td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.amount_paid}}</td>
+          <td class="hidden-xs-down hidden-sm-down hidden-md-down">{{user.amount_pending}}</td>
       </tbody>
     </table>
   </div>
 </div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Details of {{usersName}}!!</h4>
+    <button type="button" class="close float-right" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <app-user-detail [user]="selectedVal"></app-user-detail>
+  </div>
+  <div class="modal-footer">
+    <span placement="left" ngbPopover="Edit functionality coming soon" triggers="mouseenter:mouseleave" popoverTitle="Cannot edit at the moment"><button type="button" class="btn btn-primary" [disabled]="true">Save</button></span>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</ng-template>

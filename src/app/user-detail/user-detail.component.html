@@ -1,0 +1,67 @@
+<div class="container">
+  <!--User First and Last Name-->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">First Name</span>
+        <input type="text" class="form-control" [(ngModel)]="user.name" placeholder="First Name" aria-describedby="basic-addon3">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Last Name</span>
+        <input type="text" class="form-control" [(ngModel)]="user.surname" placeholder="Last Name" aria-describedby="basic-addon3">
+      </div>
+    </div>
+  </div>
+
+  &nbsp;
+
+  <!--Users PNR ID & Unique ID-->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">PNR ID</span>
+        <input type="text" class="form-control" [(ngModel)]="user.pnr_id" placeholder="PNR ID" aria-describedby="basic-addon3">
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Unique Name</span>
+        <input type="text" class="form-control" [(ngModel)]="user.uniqueId" placeholder="Unique Name" aria-describedby="basic-addon3">
+      </div>
+    </div>
+  </div>
+
+  &nbsp;
+
+  <!--User's Physician Name-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group" placement="top" ngbPopover="You cannot edit physician name" triggers="mouseenter:mouseleave" popoverTitle="Cannot modify">
+        <span class="input-group-addon" id="basic-addon3">Physician Name</span>
+        <input type="text" class="form-control" [(ngModel)]="user.fullname" placeholder="Physician Name" aria-describedby="basic-addon3" [disabled]="true">
+      </div>
+    </div>
+  </div>
+
+  &nbsp;
+
+  <!--User email-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">Email</span>
+        <input type="text" class="form-control" [(ngModel)]="user.email" placeholder="Email" aria-describedby="basic-addon3">
+        <span class="input-group-addon" id="basic-addon2">@example.com</span>
+      </div>
+    </div>
+  </div>
+
+  &nbsp;
+
+  <!--User Payment Due-->
+  <h3 *ngIf="user.amount_due"><span class="badge badge-danger center">Amount Due</span></h3>
+  <h3 *ngIf="!user.amount_due"><span class="badge badge-success center">No Amount Due</span></h3>
+
+</div>
